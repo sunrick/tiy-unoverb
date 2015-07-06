@@ -39,7 +39,7 @@ gem 'puma'
 gem 'paperclip'
 
 # Upload images to Amazon
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 
 # Foreman
 gem 'foreman'
