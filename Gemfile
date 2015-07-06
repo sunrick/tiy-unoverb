@@ -44,3 +44,8 @@ group :development, :test do
   gem 'pry'
 end
 
+group :production do
+  gem 'rack-cors', require: 'rack/cors'
+  gem 'rails_12factor'
+end
+
