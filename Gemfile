@@ -35,6 +35,15 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Puma server
 gem 'puma'
 
+# Paperclip for uploading images
+gem 'paperclip'
+
+# Upload images to Amazon
+gem 'aws-sdk', '< 2.0'
+
+# Foreman
+gem 'foreman'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
