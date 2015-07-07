@@ -64,8 +64,7 @@ Response Status Code: 422
 
 ### User login
 
-Access-Token:
-* Not required.*
+Access-Token: *Not required.*
 
 Path:
 `POST '/users/login'`
@@ -99,8 +98,7 @@ Response Status Code: 422
 
 ### Get current user profile
 
-Access-Token:
-*Required.*
+Access-Token: *Required.*
 
 Path: `GET '/users/profile'`
 
@@ -138,8 +136,7 @@ Response Status Code: 401
 
 ### Update current user profile
 
-Access-Token:
-*Required.*
+Access-Token: *Required.*
 
 Path:
 `PUT '/users/profile'`
@@ -158,7 +155,6 @@ Parameters:
 Example data successful response:
 
 ```json
-
 {
   "username": "dsfasdf",
   "first_name": "Joe",
@@ -189,11 +185,10 @@ Response Status Code: 401
 
 ###Delete a User
 
-Access-Token:
-*Required.*
+Access-Token: *Required.*
 
 Path:
-`DELETE '/user'`
+`DELETE '/users/delete'`
 
 Example data successful response:
 
