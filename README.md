@@ -2,7 +2,7 @@
 
 ## Overview
 
-All access is over HTTPS, and access from the "https://protected-scrubland-4220.herokuapp.com/" domain. All data is sent and received as JSON.
+All access is over HTTPS, and access from the https://protected-scrubland-4220.herokuapp.com/ domain. All data is sent and received as JSON.
 
 ## Access Token
 
@@ -45,7 +45,9 @@ Parameters:
 
 Example data successful response:
 
-```
+```json
+Response Status Code: 200
+
 {
   "username": "testuser3",
   "first_name": "Joe",
@@ -74,8 +76,7 @@ Response Status Code: 422
 
 ### User login
 
-Access-Token:
-* Not required.*
+Access-Token: *Not required.*
 
 Path:
 `POST '/users/login'`
@@ -110,8 +111,7 @@ Response Status Code: 422
 
 ### Get current user profile
 
-Access-Token:
-*Required.*
+Access-Token: *Required.*
 
 Path: `GET '/users/profile'`
 
@@ -123,7 +123,7 @@ Response Status Code: 200
 {
   "username": "dsfasdf",
   "first_name": "Joe",
-  "last_name": "Hello"
+  "last_name": "Hello",
   "email": "whattt@sup.com",
   "avatar": "https://hello.com/somepic.jpg"
 }
@@ -150,8 +150,7 @@ Response Status Code: 401
 
 ### Update current user profile
 
-Access-Token:
-*Required.*
+Access-Token: *Required.*
 
 Path:
 `PUT '/users/profile'`
@@ -175,7 +174,7 @@ Response Status Code: 200
 {
   "username": "dsfasdf",
   "first_name": "Joe",
-  "last_name": "Hello"
+  "last_name": "Hello",
   "email": "whattt@sup.com",
   "avatar": "https://hello.com/somepic.jpg"
 }
@@ -202,11 +201,10 @@ Response Status Code: 401
 
 ###Delete a User
 
-Access-Token:
-*Required.*
+Access-Token: *Required.*
 
 Path:
-`DELETE '/user'`
+`DELETE '/users/delete'`
 
 Parameters:
 
