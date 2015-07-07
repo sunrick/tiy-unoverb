@@ -2,7 +2,7 @@
 
 ## Overview
 
-All access is over HTTPS, and access from the "https://protected-scrubland-4220.herokuapp.com/" domain. All data is sent and received as JSON.
+All access is over HTTPS, and access from the https://protected-scrubland-4220.herokuapp.com/ domain. All data is sent and received as JSON.
 
 ## Access Token
 
@@ -35,7 +35,9 @@ Parameters:
 
 Example data successful response:
 
-```
+```json
+Response Status Code: 200
+
 {
   "username": "testuser3",
   "first_name": "Joe",
