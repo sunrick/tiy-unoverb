@@ -191,7 +191,7 @@ Response Status Code: 404
 ```
 Or if access token is wrong or empty:
 
-```
+```json
 Response Status Code: 401
 
 {
@@ -214,7 +214,7 @@ Parameters:
 
 Example data successful response:
 
-```
+```json
 Response Status Code: 200
 
 {
