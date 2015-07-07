@@ -68,7 +68,8 @@ Response Status Code: 422
     "Email can't be blank",
     "Email is not a valid email.",
     "User name can't be blank",
-    "Full_name can't be blank"
+    "First name can't be blank",
+    "Last name can't be blank"
   ]
 }
 
