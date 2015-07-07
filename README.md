@@ -109,7 +109,7 @@ Example data successful response:
 {
   "username": "dsfasdf",
   "first_name": "Joe",
-  "last_name": "Hello"
+  "last_name": "Hello",
   "email": "whattt@sup.com",
   "avatar": "https://hello.com/somepic.jpg"
 }
@@ -158,7 +158,7 @@ Example data successful response:
 {
   "username": "dsfasdf",
   "first_name": "Joe",
-  "last_name": "Hello"
+  "last_name": "Hello",
   "email": "whattt@sup.com",
   "avatar": "https://hello.com/somepic.jpg"
 }
