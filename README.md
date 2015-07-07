@@ -10,8 +10,18 @@ Assume that every request requires an access token unless stated otherwise. The 
 
 To do this make sure you set 'Access-Token' equal to the user's access token in every required request.
 
-```
-['Access-Token'] = 'f16395873f4bcee7ef5d46e531b9f659'
+`['Access-Token'] = 'f16395873f4bcee7ef5d46e531b9f659'`
+
+### Unauthorized
+
+If a user is unauthorized to make a request the following json response will be given:
+
+```json
+Response Status Code: 401
+
+{
+  "message": "Access-Token not found."
+}
 ```
 
 ## Sign up, Login, User profile and Delete user
@@ -81,6 +91,7 @@ Example data successful response:
 
 ```json
 Response Status Code: 200
+
 {
   "username": "testuser3",
   "access_token": "f16395873f4bcee7ef5d46e531b9f659"
@@ -107,6 +118,7 @@ Path: `GET '/users/profile'`
 Example data successful response:
 
 ```json
+Response Status Code: 200
 
 {
   "username": "dsfasdf",
@@ -128,7 +140,7 @@ Response Status Code: 404
 ```
 Or if access token is wrong or empty:
 
-```
+```json
 Response Status Code: 401
 
 {
@@ -158,6 +170,7 @@ Parameters:
 Example data successful response:
 
 ```json
+Response Status Code: 200
 
 {
   "username": "dsfasdf",
@@ -195,9 +208,17 @@ Access-Token:
 Path:
 `DELETE '/user'`
 
+Parameters:
+
+| name       | type   | description                              |
+|------------|--------|------------------------------------------|
+| password   | string | password confirmation to delete user     |
+
 Example data successful response:
 
 ```
+Response Status Code: 200
+
 {
   "message": "Account deleted."
 }

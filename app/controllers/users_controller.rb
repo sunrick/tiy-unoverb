@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_with_token!, only: [:delete, :update, :show]
 
   def signup
     passhash = password_encryption(params[:password])
@@ -10,7 +11,7 @@ class UsersController < ApplicationController
                     avatar: params[:avatar] }
     @user = User.new(user_params)
     if @user.save
-      render json: @user
+      render 'created.json.jbuilder', status: :created
     else 
       render json: { errors: @user.errors.full_messages },
       status: :unprocessable_entity
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
     passhash = password_encryption(params[:password])
     @user = User.find_by(username: params[:username], password: passhash)
     if @user
-      render json: @user
+      render 'login.json.jbuilder', status: :ok
     else 
       render json: { message: 'The username or password you supplied is incorrect.' },
         status: :unprocessable_entity
@@ -41,16 +42,17 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    render json: @user
+    render 'update.json.jbuilder', status: :ok
   end
 
   def update
+    @user = current_user
     user_params = { email: params[:email], 
                     first_name: params[:first_name],
                     last_name: params[:last_name],
                     avatar: params[:avatar] }
-    current_user.update(user_params)
-    render json: @user
+    @user.update(user_params)
+    render 'update.json.jbuilder', status: :ok
   end
 
   private
