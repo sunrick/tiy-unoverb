@@ -200,6 +200,61 @@ Response Status Code: 401
 }
 ```
 
+###Change password
+
+Access-Token: *Required.*
+
+Path:
+`PUT '/users/password'`
+
+Parameters:
+
+| name       | type   | description                              |
+|------------|--------|------------------------------------------|
+| password   | string | password confirmation to delete user     |
+| new_password   | string | password confirmation to delete user     |
+
+Example data successful response:
+
+```json
+Response Status Code: 200
+
+{
+  "message": "Password has been changed."
+}
+```
+
+Example data failure response:
+
+```json
+Response Status Code: 422
+
+{
+  "message": "Password has been changed."
+}
+```
+
+Or:
+
+```json
+Response Status Code: 422
+
+{
+  "message": "New password is invalid."
+}
+```
+
+Or:
+
+```json
+Response Status Code: 422
+
+{
+  "message": "Password you supplied is not correct."
+}
+```
+
+
 ###Delete a User
 
 Access-Token: *Required.*
@@ -219,6 +274,6 @@ Example data successful response:
 Response Status Code: 200
 
 {
-  "message": "Account deleted."
+  "message": "User has been deleted."
 }
 ```
