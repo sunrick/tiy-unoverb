@@ -55,6 +55,23 @@ class UsersController < ApplicationController
     render 'update.json.jbuilder', status: :ok
   end
 
+  def password
+    passhash = password_encryption(params[:password])
+    if passhash == current_user.password
+      passhash_new = password_encryption(params[:new_password])
+      if current_user.update(password: passhash_new)
+        render json: { message: 'Password has been changed.'},
+          status: :ok
+      else
+        render json: { message: 'New password is invalid.'},
+          status: :unprocessable_entity
+      end
+    else
+      render json: { message: 'Password you supplied is not correct.' },
+          status: :unprocessable_entity
+    end
+  end
+
   private
   def password_encryption(password)
     if !password.nil? && password != ""

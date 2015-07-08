@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   delete 'users/delete', to: 'users#delete'
   get 'users/profile', to: 'users#show'
   put 'users/profile', to: 'users#update'
+  put 'users/password', to: 'users#password'
 
   # CLASSROOM ROUTES
   post 'classrooms/create', to: 'classrooms#create'
