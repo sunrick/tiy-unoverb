@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
 
   before_validation :ensure_access_token
 
+  # ASSOCIATIONS
+  has_many :roles
+  has_many :classrooms, through :roles
+
   def ensure_access_token
     if self.access_token.blank?
       self.access_token = User.generate_token
