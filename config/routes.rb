@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   get 'users/profile', to: 'users#show'
   put 'users/profile', to: 'users#update'
 
+  # CLASSROOM ROUTES
+  post 'classrooms/create', to: 'classrooms#create'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
