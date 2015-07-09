@@ -312,4 +312,25 @@ Response Status Code: 200
     "role": "teacher"
   }
 }
+
+Example data failure response:
+
+```json
+Response Status Code: 422
+
+{
+  "errors": [
+    "Name has already been taken",
+    "Code can't be blank"
+  ]
+}
+
+Or:
+
+```json
+Response Status Code: 422
+
+{
+  "message": "Language doesn't exist"
+}
 ```
