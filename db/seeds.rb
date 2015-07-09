@@ -45,7 +45,7 @@ def importer_thing
 
     form_count = 0 # loop through different forms
     form_col_count = 7 # loop through form columns
-    until form_count == 12
+    until form_col_count == 12
       conjugation = {
         form: @forms[form_count],
         conjugation: row[form_col_count]
