@@ -13,7 +13,7 @@ Language.create(name: "spanish")
 
 
 def importer_thing
-  csv_file = "spanish_database.csv"
+  csv_file = "cd/spanish_database.csv"
 
   @forms = ["yo","tu","el/ella/usted","nosotros","vosotros","ellos_ellas_ustedes"]
   @language = Language.find_by(name: "spanish")
