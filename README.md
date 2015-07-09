@@ -312,6 +312,7 @@ Response Status Code: 200
     "role": "teacher"
   }
 }
+```
 
 Example data failure response:
 
