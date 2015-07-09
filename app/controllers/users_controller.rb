@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_with_token!, only: [:delete, :update, :show]
+  before_action :authenticate_with_token!, only: [:delete, :update, :show, :password]
 
   def signup
     passhash = password_encryption(params[:password])
