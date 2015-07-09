@@ -23,7 +23,7 @@ def importer_thing
       verb_english:     row['infinitive_english'],
     }
 
-    tense_hash {
+    tense_hash = {
       combined_tense:         row['mood'] + " " + row['tense'],
       combined_tense_english: row['mood_english'] + " " + row['tense_english'],
       mood:                   row['mood'],
@@ -38,22 +38,22 @@ def importer_thing
     }
 
     verb_hash = verb_hash.merge({ language: @language})
-    @verb = Verb.create(verb_hash)
+    @verb = Verb.find_or_create_by(verb_hash)
 
-    prep_count = 0
-    form_count = 7
+    form_count = 0 # loop through different forms
+    form_col_count = 7 # loop through form columns
     until form_count == 12
       conjugation = {
-        form: @forms[prep_count],
-        conjugation: row[form_count]
+        form: @forms[form_count],
+        conjugation: row[form_col_count]
       }
 
       combo = tense_hash.merge(conjugation)
       combo = combo.merge({verb: @verb})
-      Conjugation.create(combo)
+      Conjugation.find_or_create_by(combo)
 
+      form_col_count += 1
       form_count += 1
-      prep_count += 1
     end
   end
   csv
