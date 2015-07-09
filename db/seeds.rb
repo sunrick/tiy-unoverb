@@ -56,5 +56,6 @@ def importer_thing
       form_count += 1
     end
   end
-  csv
 end
+
+importer_thing
