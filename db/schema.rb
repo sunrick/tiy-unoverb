@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709154542) do
+ActiveRecord::Schema.define(version: 20150709183554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,25 @@ ActiveRecord::Schema.define(version: 20150709154542) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "code"
+  end
+
+  create_table "conjugations", force: :cascade do |t|
+    t.string   "combined_tense"
+    t.string   "combined_tense_english"
+    t.string   "mood"
+    t.string   "mood_english"
+    t.string   "tense"
+    t.string   "tense_english"
+    t.string   "verb_english"
+    t.string   "gerund"
+    t.string   "gerund_english"
+    t.string   "pastparticiple"
+    t.string   "pastparticiple_english"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "form"
+    t.string   "conjugation"
+    t.integer  "verb_id"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -52,6 +71,14 @@ ActiveRecord::Schema.define(version: 20150709154542) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "access_token"
+  end
+
+  create_table "verbs", force: :cascade do |t|
+    t.string   "verb"
+    t.string   "verb_english"
+    t.integer  "language_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
 end
