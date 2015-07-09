@@ -277,3 +277,60 @@ Response Status Code: 200
   "message": "User has been deleted."
 }
 ```
+
+## Classroom stuff
+
+### Create a classroom
+
+Access-Token: *Required.*
+
+Path:
+`POST '/classrooms/create'`
+
+Parameters:
+
+| name       | type   | description                              |
+|------------|--------|------------------------------------------|
+| name   | string | name of the classroom you want to create, has to unique    |
+| description   | string | description of the classroom you want to create    |
+| code | string | code that other people can use to join to your class room, required |
+| language | string | language that the classroom belongs to eg. "spanish" |
+
+
+Example data successful response:
+
+```json
+Response Status Code: 200
+
+{
+  "id": 15,
+  "name": "spanish",
+  "description": "this is my class",
+  "code": "hello",
+  "user": {
+    "username": "hello12",
+    "role": "teacher"
+  }
+}
+
+Example data failure response:
+
+```json
+Response Status Code: 422
+
+{
+  "errors": [
+    "Name has already been taken",
+    "Code can't be blank"
+  ]
+}
+
+Or:
+
+```json
+Response Status Code: 422
+
+{
+  "message": "Language doesn't exist"
+}
+```
