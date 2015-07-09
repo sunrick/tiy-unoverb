@@ -36,7 +36,8 @@ class UsersController < ApplicationController
       render json: { message: 'User has been deleted'},
         status: :ok
     else
-      render json: { message: 'Password you supplied is not correct' }
+      render json: { message: 'Password you supplied is not correct' },
+        status: :unprocessable_entity
     end
   end
 
