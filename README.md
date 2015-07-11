@@ -336,3 +336,73 @@ Response Status Code: 422
   "message": "Language doesn't exist"
 }
 ```
+
+### Show a specific classroom
+
+Access-Token: *Not Required.*
+
+Path: `GET '/classrooms/:id'`
+
+Example data successful response if current user is a student or teacher of class:
+
+```json
+Response Status Code: 200
+
+{
+  "id": 15,
+  "name": "hello",
+  "description": "this is my class",
+  "language": "spanish",
+  "teachers": [
+    {
+      "id": 18,
+      "username": "hello12",
+      "first_name": "rick",
+      "last_name": "sun",
+      "avatar": "https://s3-us-west-2.amazonaws.com/unoverb-prod/default/missing.png",
+      "role": "teacher"
+    }
+  ],
+  "students": [
+    {
+      "id": 46,
+      "username": "hello21232222222222222322222324422222224562",
+      "first_name": "rick",
+      "last_name": "sun",
+      "avatar": "https://s3-us-west-2.amazonaws.com/unoverb-prod/default/missing.png",
+      "role": "student"
+    },
+    {
+      "id": 7,
+      "username": "hello",
+      "first_name": "rick",
+      "last_name": "sun",
+      "avatar": "http://unoverb-dev.s3.amazonaws.com/users/avatars/000/000/007/original/Screen_Shot_2015-06-30_at_9.19.53_AM.png?1436214265",
+      "role": "student"
+    },
+    {
+      "id": 47,
+      "username": "test",
+      "first_name": "rick",
+      "last_name": "sun",
+      "avatar": "http://unoverb-dev.s3.amazonaws.com/users/avatars/000/000/047/original/missing.png?1436564914",
+      "role": "student"
+    }
+  ]
+}
+```
+
+Example data successful response if user/visitor not part of class:
+
+```json
+{
+  "id": 15,
+  "name": "hello",
+  "description": "this is my class",
+  "language": "spanish",
+  "teachers": 1,
+  "students": 3
+}
+```
+
+
