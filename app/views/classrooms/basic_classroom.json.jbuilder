@@ -1,4 +1,5 @@
 json.(@classroom, :id, :name, :description)
 json.language @language.name
-json.teachers @teachers.count
-json.students @students.count
+json.num_teachers @teachers.count
+json.num_students @students.count
+json.visibility_type "basic"

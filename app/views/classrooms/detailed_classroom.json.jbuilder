@@ -1,5 +1,7 @@
 json.(@classroom, :id, :name, :description)
 json.language @language.name
+json.num_teachers @teachers.count
+json.num_students @students.count
 json.teachers do
   json.array! @teachers do |teacher|
     json.id teacher.id
@@ -20,3 +22,4 @@ json.students do
     json.role "student"
   end
 end
+json.visibility_type "detailed"
