@@ -1,4 +1,5 @@
 json.(@classroom, :id, :name, :description)
+json.language @language.name
 json.teachers do
   json.array! @teachers do |teacher|
     json.id teacher.id
