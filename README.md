@@ -339,7 +339,9 @@ Response Status Code: 422
 
 ### Show a specific classroom
 
-Access-Token: *Not Required.*
+This endpoint allows you get classroom information at two different levels of detail depending on if the user is part of the classroom or not. You'll find visibility_type at the bottom of the json response for your convenience. It will either be detailed or basic.
+
+Access-Token: *Required for Detailed view* *Not Required for basic view.*
 
 Path: `GET '/classrooms/:id'`
 
@@ -353,6 +355,8 @@ Response Status Code: 200
   "name": "hello",
   "description": "this is my class",
   "language": "spanish",
+  "num_teachers": 1,
+  "num_students": 3,
   "teachers": [
     {
       "id": 18,
@@ -388,7 +392,8 @@ Response Status Code: 200
       "avatar": "http://unoverb-dev.s3.amazonaws.com/users/avatars/000/000/047/original/missing.png?1436564914",
       "role": "student"
     }
-  ]
+  ],
+  "visibility_type": "detailed"
 }
 ```
 
@@ -400,8 +405,9 @@ Example data successful response if user/visitor not part of class:
   "name": "hello",
   "description": "this is my class",
   "language": "spanish",
-  "teachers": 1,
-  "students": 3
+  "num_teachers": 1,
+  "num_students": 3,
+  "visibility_type": "basic"
 }
 ```
 
