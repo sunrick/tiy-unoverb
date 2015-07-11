@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
 
+  rescue_from CanCan::AccessDenied do |exception|
+    render json: { message: exception.message }, status: :unauthorized
+  end
+
   def current_user
     token = request.headers['Access-Token']
     token && User.find_by(access_token: token)

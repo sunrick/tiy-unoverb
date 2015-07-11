@@ -8,7 +8,6 @@ class ClassroomsController < ApplicationController
                                                 description: params[:description], 
                                                 language: @language,
                                                 code: params[:code] )
-      authorize! :create, @classroom
       if @classroom.save
         @role = Role.create( user: current_user, classroom: @classroom, role: "teacher" )
         @user = current_user
@@ -25,12 +24,18 @@ class ClassroomsController < ApplicationController
   end
 
   def delete
-    
   end
     
-  def show
-    @classroom = current_user.classrooms.find(1)
-    authorize! :show, @classroom
+  def show_classroom
+    @classroom = Classroom.find(params[:id])
+    @language = @classroom.language
+    @teachers = @classroom.users.where(roles: {role: "teacher"})
+    @students = @classroom.users.where(roles: {role: "student"})
+    if can? :user_classrooms, @classroom
+      render 'detailed_classroom.json.jbuilder', status: :ok
+    else
+      render 'basic_classroom.json.jbuilder', status: :ok
+    end
   end
 
 end
