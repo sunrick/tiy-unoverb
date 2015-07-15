@@ -38,4 +38,20 @@ class ClassroomsController < ApplicationController
     end
   end
 
+  def get_classrooms
+    @language = Language.find_by(name: params[:language].downcase)
+    if @language
+      if params[:sort_by].downcase == "new"
+        @classrooms = @language.classrooms.order(created_at: :desc)
+      elsif params[:sort_by].downcase == "top"
+        @classrooms = @language.classrooms.order(roles_count: :desc)
+      else
+        render json: { message: "Check your parameters."}
+      end
+      render 'classrooms.json.jbuilder'
+    else
+      render json: { message: "Language does not exist."}
+    end
+  end
+
 end
