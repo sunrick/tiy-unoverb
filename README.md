@@ -14,7 +14,7 @@
   * [Create a classroom](#create-a-classroom)
   * [Show a specific classroom](#show-a-specific-classroom)
   * [Show a list of classrooms](#show-a-list-of-classrooms)
-
+  
 ## Overview
 
 All access is over HTTPS, and access from the https://protected-scrubland-4220.herokuapp.com/ domain. All data is sent and received as JSON.
