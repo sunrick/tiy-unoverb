@@ -21,9 +21,24 @@ class ClassroomsController < ApplicationController
   end
 
   def update
+    @language = Language.find_by(name: params[:language])
+    classroom_params = { name: params[:name], 
+                         description: params[:description],
+                         avatar: params[:avatar],
+                         language: @language }
+    @classroom = Classroom.find(params[:id])
+    @role = Role.find_by(user: current_user, classroom: @classroom)
+    @user = current_user
+    authorize! :update, @classroom
+    @classroom.update(classroom_params)
+    render 'created.json.jbuilder', status: :ok
   end
 
   def delete
+    @classroom = Classroom.find(params[:id])
+    authorize! :delete, @classroom
+    @classroom.destroy
+    render json: { message: "Classroom deleted." }, status: :ok
   end
     
   def show_classroom
