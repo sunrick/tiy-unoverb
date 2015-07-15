@@ -20,6 +20,12 @@ Rails.application.routes.draw do
   delete 'classrooms/:id', to: 'classrooms#delete'
   get 'classrooms', to: 'classrooms#get_classrooms'
   get 'user/classrooms', to: 'classrooms#show_user_classrooms'
+
+  # CLASSROOM REQUEST ROUTES
+
+  post 'classrooms/:id/join', to: 'classrooms#request_join'
+  get 'classrooms/:id/requests', to: 'classrooms#get_requests'
+  post 'requests/:id/', to: 'classrooms#process_request'
   
 
   # Example of regular route:
