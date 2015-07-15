@@ -46,7 +46,7 @@ Parameters:
 Example data successful response:
 
 ```json
-Response Status Code: 200
+Response Status Code: 201
 
 {
   "username": "testuser3",
@@ -300,7 +300,7 @@ Parameters:
 Example data successful response:
 
 ```json
-Response Status Code: 200
+Response Status Code: 201
 
 {
   "id": 17,
