@@ -2,12 +2,12 @@ class ClassroomsController < ApplicationController
   before_action :authenticate_with_token!, only: [:create]
 
   def create
-    @language = Language.find_by(name: params[:language].downcase)
+    @language = Language.find_by(name: params[:language])
     if @language
       @classroom = current_user.classrooms.new( name: params[:name], 
                                                 description: params[:description], 
                                                 language: @language,
-                                                code: params[:code] )
+                                                avatar: params[:avatar] )
       if @classroom.save
         @role = Role.create( user: current_user, classroom: @classroom, role: "teacher" )
         @user = current_user
