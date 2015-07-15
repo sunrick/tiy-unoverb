@@ -442,8 +442,9 @@ Parameters:
 
 | name       | type   | description                              | required? |
 |------------|--------|------------------------------------------| ---------- |
-| sort_by   | string | valid options: "new", "top"   | Required|
-| language | string | specify language | Required |
+| sort_by   | string | valid options: "new", "top"   | required|
+| language | string | specify language | required |
+| page | integer | get page of 25 results | not required |
 
 Example data successful response:
 
