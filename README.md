@@ -354,6 +354,7 @@ Response Status Code: 200
   "id": 15,
   "name": "hello",
   "description": "this is my class",
+  "avatar": "https://s3-us-west-2.amazonaws.com/unoverb-prod/default/missing.png",
   "language": "spanish",
   "num_teachers": 1,
   "num_students": 3,
@@ -404,6 +405,7 @@ Example data successful response if user/visitor not part of class:
   "id": 15,
   "name": "hello",
   "description": "this is my class",
+  "avatar": "https://s3-us-west-2.amazonaws.com/unoverb-prod/default/missing.png",
   "language": "spanish",
   "num_teachers": 1,
   "num_students": 3,
@@ -435,6 +437,7 @@ Response Status Code: 200
     "id": 15,
     "name": "hello",
     "description": "this is my class",
+    "avatar": "https://s3-us-west-2.amazonaws.com/unoverb-prod/default/missing.png",
     "language": "spanish",
     "num_participants": 4
   },
@@ -442,6 +445,7 @@ Response Status Code: 200
     "id": 13,
     "name": "joe likes fish",
     "description": "this is my class",
+    "avatar": "https://s3-us-west-2.amazonaws.com/unoverb-prod/default/missing.png",
     "language": "spanish",
     "num_participants": 1
   }
