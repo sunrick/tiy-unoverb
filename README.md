@@ -9,7 +9,7 @@
   * [Get current user profile](#get-current-user-profile)
   * [Update current user profile](#update-current-user-profile)
   * [Change password](#change-password)
-  * [Delete user](#delete-user)
+  * [Delete a user](#delete-a-user)
 3. [Classroom routes](#classroom-routes)
   * [Create a classroom](#create-a-classroom)
   * [Show a specific classroom](#show-a-specific-classroom)
