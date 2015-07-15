@@ -31,11 +31,17 @@ class ClassroomsController < ApplicationController
     @language = @classroom.language
     @teachers = @classroom.users.where(roles: {role: "teacher"})
     @students = @classroom.users.where(roles: {role: "student"})
-    if can? :user_classrooms, @classroom
+    if can? :show_classroom, @classroom
       render 'detailed_classroom.json.jbuilder', status: :ok
     else
       render 'basic_classroom.json.jbuilder', status: :ok
     end
+  end
+
+  def show_user_classrooms
+    @teacher_classrooms = current_user.classrooms.where(roles: {role: "teacher"})
+    @student_classrooms = current_user.classrooms.where(roles: {role: "student"})
+    render 'user_classrooms.json.jbuilder'
   end
 
   def get_classrooms
@@ -43,10 +49,10 @@ class ClassroomsController < ApplicationController
     if @language
       if params[:sort_by] == "new"
         @classrooms = @language.classrooms.order(created_at: :desc)
-        render 'classrooms.json.jbuilder'
+        render 'classrooms.json.jbuilder', status: :ok
       elsif params[:sort_by] == "top"
         @classrooms = @language.classrooms.order(roles_count: :desc)
-        render 'classrooms.json.jbuilder'
+        render 'classrooms.json.jbuilder', status: :ok
       else
         render json: { message: "Not a valid sort_by parameter."},
           status: :unprocessable_entity
