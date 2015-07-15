@@ -1,5 +1,20 @@
 # API
 
+## Table of Contents
+1. [Overview](#overview)
+  * [Access Token](#access-token)
+  * [Unauthorized](#unauthorized)
+2. [User Routes](#user-routes)
+  * [New user registration](#new-user-registration)
+  * [Get current user profile](#get-current-user-profile)
+  * [Update current user profile](#update-current-user-profile)
+  * [Change password](#change-password)
+  * [Delete a user](#delete-a-user)
+3. [Classroom routes](#classroom-routes)
+  * [Create a classroom](#create-a-classroom)
+  * [Show a specific classroom](#show-a-specific-classroom)
+  * [Show a list of classrooms](#show-a-list-of-classrooms)
+
 ## Overview
 
 All access is over HTTPS, and access from the https://protected-scrubland-4220.herokuapp.com/ domain. All data is sent and received as JSON.
@@ -24,7 +39,7 @@ Response Status Code: 401
 }
 ```
 
-## Sign up, Login, User profile and Delete user
+## User Routes
 
 ### New user registration
 
@@ -278,7 +293,7 @@ Response Status Code: 200
 }
 ```
 
-## Classroom stuff
+## Classroom routes
 
 ### Create a classroom
 
