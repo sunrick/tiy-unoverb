@@ -303,10 +303,11 @@ Example data successful response:
 Response Status Code: 200
 
 {
-  "id": 15,
-  "name": "spanish",
-  "description": "this is my class",
-  "avatar": "hello",
+  "id": 17,
+  "name": "hello44",
+  "description": "hello hello",
+  "avatar": "https://s3-us-west-2.amazonaws.com/unoverb-prod/default/missing.png",
+  "language": "spanish",
   "user": {
     "username": "hello12",
     "role": "teacher"
