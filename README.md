@@ -321,8 +321,7 @@ Response Status Code: 422
 
 {
   "errors": [
-    "Name has already been taken",
-    "Code can't be blank"
+    "Name has already been taken"
   ]
 }
 ```
