@@ -289,12 +289,12 @@ Path:
 
 Parameters:
 
-| name       | type   | description                              |
-|------------|--------|------------------------------------------|
-| name   | string | name of the classroom you want to create, has to unique    |
-| description   | string | description of the classroom you want to create    |
-| code | string | code that other people can use to join to your class room, required |
-| language | string | language that the classroom belongs to eg. "spanish" |
+| name       | type   | description                              | required? |
+|------------|--------|------------------------------------------| ---------- |
+| name   | string | name of the classroom you want to create, has to unique    | required |
+| description   | string | description of the classroom you want to create    | not required |
+| language | string | language that the classroom belongs to eg. "spanish" | required |
+| avatar | file | avatar for classroom, will default to a specific image | not required |
 
 
 Example data successful response:
@@ -306,7 +306,7 @@ Response Status Code: 200
   "id": 15,
   "name": "spanish",
   "description": "this is my class",
-  "code": "hello",
+  "avatar": "hello",
   "user": {
     "username": "hello12",
     "role": "teacher"
