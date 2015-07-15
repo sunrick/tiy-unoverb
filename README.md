@@ -14,6 +14,9 @@
   * [Create a classroom](#create-a-classroom)
   * [Show a specific classroom](#show-a-specific-classroom)
   * [Show a list of classrooms](#show-a-list-of-classrooms)
+  * [Update a classroom](#update-classroom)
+  * [Delete a classroom](#delete-classroom)
+  * [Get classrooms for a user](#get-classrooms-for-a-user)
 
 ## Overview
 
@@ -487,5 +490,102 @@ Response Status Code: 422
 {
   "message": "Not a valid sort_by parameter."
 }
+```
+### Update a classroom
+
+Access-Token: *Required.*
+
+Path: `PUT '/classrooms/:id'`
+
+Parameters:
+
+| name       | type   | description                              | required? |
+|------------|--------|------------------------------------------| ---------- |
+| name   | string | name of the classroom you want to create, has to unique    | required |
+| description   | string | description of the classroom you want to create    | not required |
+| language | string | language that the classroom belongs to eg. "spanish" | required |
+| avatar | file | avatar for classroom, will default to a specific image | not required |
+
+
+Example data successful response:
+
+```json
+Response Status Code: 200
+
+{
+  "id": 17,
+  "name": "hello44",
+  "description": "hello hello",
+  "avatar": "https://s3-us-west-2.amazonaws.com/unoverb-prod/default/missing.png",
+  "language": "spanish",
+  "user": {
+    "username": "hello12",
+    "role": "teacher"
+  }
+}
+```
+
+Example data failure response:
+
+```json
+Response Status Code: 422
+
+{
+  "errors": [
+    "Name has already been taken"
+  ]
+}
+```
+
+Or:
+
+```json
+Response Status Code: 422
+
+{
+  "message": "Language doesn't exist"
+}
+```
+
+### Delete a classroom
+
+Access-Token: *Required.*
+
+Path: `DELETE '/classrooms/:id'`
+
+```json
+Response Status Code: 200
+
+{
+  "message": "Classroom deleted."
+}
+```
+
+### Get classrooms for a user
+
+Access-Token: *Required.*
+
+Path: `GET 'user/classrooms/'`
+
+```json
+Response Status Code: 200
+[
+  {
+    "id": 13,
+    "name": "hello",
+    "description": "this is my class",
+    "avatar": "https://s3-us-west-2.amazonaws.com/unoverb-prod/default/missing.png",
+    "language": "spanish",
+    "role": "teacher"
+  },
+  {
+    "id": 17,
+    "name": "hello44",
+    "description": "hello hello",
+    "avatar": "https://s3-us-west-2.amazonaws.com/unoverb-prod/default/missing.png",
+    "language": "spanish",
+    "role": "student"
+  }
+]
 ```
 

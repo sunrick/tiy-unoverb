@@ -16,8 +16,11 @@ Rails.application.routes.draw do
   # CLASSROOM ROUTES
   post 'classrooms/create', to: 'classrooms#create'
   get 'classrooms/:id', to: 'classrooms#show_classroom'
+  put 'classrooms/:id', to: 'classrooms#update'
+  delete 'classrooms/:id', to: 'classrooms#delete'
   get 'classrooms', to: 'classrooms#get_classrooms'
   get 'user/classrooms', to: 'classrooms#show_user_classrooms'
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
