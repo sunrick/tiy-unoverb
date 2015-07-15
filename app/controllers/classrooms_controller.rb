@@ -48,10 +48,12 @@ class ClassroomsController < ApplicationController
         @classrooms = @language.classrooms.order(roles_count: :desc)
         render 'classrooms.json.jbuilder'
       else
-        render json: { message: "Check your parameters."}
+        render json: { message: "Not a valid sort_by parameter."},
+          status: :unprocessable_entity
       end
     else
-      render json: { message: "Language does not exist."}
+      render json: { message: "Language does not exist."},
+        status: :unprocessable_entity
     end
   end
 
