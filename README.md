@@ -468,6 +468,5 @@ Response Status Code: 422
 {
   "message": "Not a valid sort_by parameter."
 }
-
 ```
 
