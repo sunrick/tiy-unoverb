@@ -20,6 +20,12 @@
   * [Send join request to classroom](#send-join-request-to-classroom)
   * [Get requests to join classroom](#get-requests-to-join-classroom)
   * [Process a join request](#process-a-join-request)
+4. [Exercise routes](#exercise-routes)
+  * [Create an exercise for a classroom](#create-an-exercise-for-a-classroom)
+5. [Question routes](#question-routes)
+  * [Create a question for an exercise](#create-a-question-for-an-exercise)
+6. [Game routes](#game-routes)
+  * [Start a new game](#start-a-new-game)
 
 ## Overview
 
@@ -697,7 +703,6 @@ Or:
 { 
   "message": "Request deleted."
 }
-
 ```
 
 Example data failure response:
