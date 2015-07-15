@@ -411,4 +411,62 @@ Example data successful response if user/visitor not part of class:
 }
 ```
 
+### Show a list of classrooms
+
+Access-Token: *Not Required.*
+
+Path:
+`GET '/classrooms'`
+
+Parameters:
+
+| name       | type   | description                              | required? |
+|------------|--------|------------------------------------------| ---------- |
+| sort_by   | string | valid options: "new", "top"   | Required|
+| language | string | specify language | Required |
+
+Example data successful response:
+
+```json
+Response Status Code: 200
+
+[
+  {
+    "id": 15,
+    "name": "hello",
+    "description": "this is my class",
+    "language": "spanish",
+    "num_participants": 4
+  },
+  {
+    "id": 13,
+    "name": "joe likes fish",
+    "description": "this is my class",
+    "language": "spanish",
+    "num_participants": 1
+  }
+]
+
+```
+
+Example data failure response:
+
+```json
+Response Status Code: 422
+
+{
+  "message": "Language does not exist."
+}
+
+```
+
+Or:
+
+```json
+Response Status Code: 422
+
+{
+  "message": "Not a valid sort_by parameter."
+}
+```
 

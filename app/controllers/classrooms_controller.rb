@@ -38,4 +38,23 @@ class ClassroomsController < ApplicationController
     end
   end
 
+  def get_classrooms
+    @language = Language.find_by(name: params[:language])
+    if @language
+      if params[:sort_by] == "new"
+        @classrooms = @language.classrooms.order(created_at: :desc)
+        render 'classrooms.json.jbuilder'
+      elsif params[:sort_by] == "top"
+        @classrooms = @language.classrooms.order(roles_count: :desc)
+        render 'classrooms.json.jbuilder'
+      else
+        render json: { message: "Not a valid sort_by parameter."},
+          status: :unprocessable_entity
+      end
+    else
+      render json: { message: "Language does not exist."},
+        status: :unprocessable_entity
+    end
+  end
+
 end
