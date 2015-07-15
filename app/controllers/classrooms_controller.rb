@@ -1,5 +1,5 @@
 class ClassroomsController < ApplicationController
-  before_action :authenticate_with_token!, only: [:create]
+  before_action :authenticate_with_token!, only: [:create, :request_join]
 
   def create
     @language = Language.find_by(name: params[:language])
@@ -80,6 +80,42 @@ class ClassroomsController < ApplicationController
 
   def request_join
     @classroom = Classroom.find(params[:id])
+    @request = Request.find_by(user: current_user, classroom: @classroom)
+    if @request.nil? && !@classroom.roles.find_by(user: current_user)
+      @request = Request.new(user: current_user, classroom: @classroom, message: params[:message], role: params[:role])
+      if @request.save
+        @user = current_user
+        render 'request.json.jbuilder', status: :created
+      else
+       render json: { errors: @request.errors.full_messages }, status: :unprocessable_entity
+      end
+    else
+      render json: { message: "You have already tried to join this class or you are already part of it."}, status: :unprocessable_entity
+    end
+  end
+
+  def get_requests
+    @classroom = Classroom.find(params[:id])
+    authorize! :get_requests, @classroom
+    @requests = @classroom.requests.all
+    render 'requests.json.jbuilder', status: :ok
+  end
+
+  def process_request
+    @request = Request.find(params[:id])
+    @classroom = @request.classroom
+    authorize! :process_request, @classroom
+    if params[:accept] == "yes"
+      @user = @request.user
+      @role = Role.create(user: @user, classroom: @classroom, role: @request.role)
+      render 'request_process.json.jbuilder'
+      @request.destroy
+    elsif params[:accept] == "no"
+      @request.destroy
+      render json: { message: "Request deleted."}
+    else
+      render json: { message: "Check your accept parameter."}
+    end
   end
 
 end

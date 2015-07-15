@@ -17,6 +17,9 @@
   * [Update a classroom](#update-classroom)
   * [Delete a classroom](#delete-classroom)
   * [Get classrooms for a user](#get-classrooms-for-a-user)
+  * [Send join request to classroom](#send-join-request-to-classroom)
+  * [Get requests to join classroom](#get-requests-to-join-classroom)
+  * [Process a join request](#process-a-join-request)
 
 ## Overview
 
@@ -568,8 +571,11 @@ Access-Token: *Required.*
 
 Path: `GET 'user/classrooms/'`
 
+Example data successful response:
+
 ```json
 Response Status Code: 200
+
 [
   {
     "id": 13,
@@ -590,3 +596,116 @@ Response Status Code: 200
 ]
 ```
 
+### Send join request to classroom
+
+Access-Token: *Required.*
+
+Path: `POST 'classrooms/:id/join'`
+
+| name       | type   | description                              | required? |
+|------------|--------|------------------------------------------| ---------- |
+| message   | string | message that the user wants to send with request    | not required |
+| role   | string | has to be "teacher", or "student"   | required |
+
+Example data successful response:
+
+```json
+Response Status Code: 201
+
+{
+  "request_id": 4,
+  "message": "hey i want to join your class",
+  "username": "user2",
+  "classroom": "classroom1"
+}
+```
+
+Example data failure response:
+
+```json
+Response Status Code: 422
+
+{
+  "message": "You have already tried to join this class or you are already part of it!"
+}
+```
+
+### Get requests to join classroom
+
+Access-Token: *Required.*
+
+Path: `GET 'classrooms/:id/requests'`
+
+Example data successful response:
+
+```json
+Response Status Code: 200
+
+[
+  {
+    "request_id": 4,
+    "message": "hey i want to join your class",
+    "user": {
+      "username": "user2",
+      "first_name": "hello hello",
+      "last_name": "spanish",
+      "email": "rick1234@rick1234.com",
+      "avatar": "https://s3-us-west-2.amazonaws.com/unoverb-prod/default/missing.png"
+    }
+  },
+  {
+    "request_id": 5,
+    "message": "hey i also want to join your class",
+    "user": {
+      "username": "user3",
+      "first_name": "something",
+      "last_name": "spanish",
+      "email": "rick1234@rick1234.com",
+      "avatar": "https://s3-us-west-2.amazonaws.com/unoverb-prod/default/missing.png"
+    }
+  }
+]
+```
+
+### Process a join request
+
+Access-Token: *Required.*
+
+Path: `POST 'requests/:id'`
+
+| name       | type   | description                              | required? |
+|------------|--------|------------------------------------------| ---------- |
+| accept   | string | either "yes" or "no"   | required |
+
+Example data successful response:
+
+```json
+Response Status Code: 200
+
+{
+  "id": 50,
+  "username": "user2",
+  "first_name": "hello hello",
+  "last_name": "spanish",
+  "email": "rick1234@rick1234.com",
+  "avatar": "https://s3-us-west-2.amazonaws.com/unoverb-prod/default/missing.png",
+  "role": "student"
+}
+
+Or:
+
+{ 
+  "message": "Request deleted."
+}
+
+```
+
+Example data failure response:
+
+```json
+Response Status Code: 422
+
+{ 
+  "message": "Check your accept parameter."
+}
+```

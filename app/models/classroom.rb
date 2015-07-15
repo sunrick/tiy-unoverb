@@ -3,6 +3,7 @@ class Classroom < ActiveRecord::Base
   has_many :exercises
   has_many :roles
   has_many :users, through: :roles
+  has_many :requests
 
   validates :name, uniqueness: true, presence: true
 

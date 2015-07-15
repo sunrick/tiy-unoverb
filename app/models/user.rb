@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   # ASSOCIATIONS
   has_many :roles
   has_many :classrooms, through: :roles
+  has_many :requests
 
   def ensure_access_token
     if self.access_token.blank?
