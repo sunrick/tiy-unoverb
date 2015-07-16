@@ -727,6 +727,11 @@ Access-Token: *Required.*
 
 Path: `POST 'classrooms/:id/exercise'`
 
+| name       | type   | description                              | required? |
+|------------|--------|------------------------------------------| ---------- |
+| name   | string | name of the exercise   | required |
+| description   | string | description of the exercise   | not required |
+
 Example data successful response:
 
 ```json
@@ -822,6 +827,11 @@ Response Status Code: 200
 Access-Token: *Required.*
 
 Path: `PUT 'exercises/:id'`
+
+| name       | type   | description                              | required? |
+|------------|--------|------------------------------------------| ---------- |
+| name   | string | name of the exercise   | required |
+| description   | string | description of the exercise   | not required |
 
 ```json
 Response Status Code: 200
