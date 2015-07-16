@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716171406) do
+ActiveRecord::Schema.define(version: 20150716192219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,13 +30,7 @@ ActiveRecord::Schema.define(version: 20150716171406) do
   end
 
   create_table "conjugations", force: :cascade do |t|
-    t.string   "combined_tense"
-    t.string   "combined_tense_english"
-    t.string   "mood"
-    t.string   "mood_english"
-    t.string   "tense"
-    t.string   "tense_english"
-    t.string   "verb_english"
+    t.string   "example_english"
     t.string   "gerund"
     t.string   "gerund_english"
     t.string   "pastparticiple"
@@ -46,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150716171406) do
     t.string   "form"
     t.string   "conjugation"
     t.integer  "verb_id"
+    t.integer  "tense_id"
   end
 
   create_table "exercises", force: :cascade do |t|
@@ -84,6 +79,17 @@ ActiveRecord::Schema.define(version: 20150716171406) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "role"
+  end
+
+  create_table "tenses", force: :cascade do |t|
+    t.string   "combined_tense"
+    t.string   "combined_tense_english"
+    t.string   "mood"
+    t.string   "mood_english"
+    t.string   "tense"
+    t.string   "tense_english"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|
