@@ -33,7 +33,10 @@ def importer_thing
       mood_english:           row['mood_english'],
       tense:                  row['tense'],
       tense_english:          row['tense_english'],
-      verb_english:           row['verb_english'],
+    }
+
+    conjugation_hash = {
+      example_english:        row['verb_english'],
       gerund:                 row['gerund'],
       gerund_english:         row['gerund_english'],
       pastparticiple:         row['pastparticiple'],
@@ -43,6 +46,8 @@ def importer_thing
     verb_hash = verb_hash.merge({ language: @language})
     @verb = Verb.find_or_create_by(verb_hash)
 
+    @tense = Tense.find_or_create_by(tense_hash)
+
     form_count = 0 # loop through different forms
     form_col_count = 7 # loop through form columns
     until form_col_count == 12
@@ -50,9 +55,8 @@ def importer_thing
         form: @forms[form_count],
         conjugation: row[form_col_count]
       }
-
-      combo = tense_hash.merge(conjugation)
-      combo = combo.merge({verb: @verb})
+      conjugation = conjugation.merge(conjugation_hash)
+      combo = conjugation.merge({verb: @verb, tense: @tense})
       Conjugation.find_or_create_by(combo)
 
       form_col_count += 1
