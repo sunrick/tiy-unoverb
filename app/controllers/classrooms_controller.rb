@@ -1,5 +1,5 @@
 class ClassroomsController < ApplicationController
-  before_action :authenticate_with_token!, only: [:create, :request_join]
+  before_action :authenticate_with_token!, only: [:create, :request_join, :show_user_classrooms]
 
   def create
     @language = Language.find_by(name: params[:language])

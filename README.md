@@ -22,6 +22,10 @@
   * [Process a join request](#process-a-join-request)
 4. [Exercise routes](#exercise-routes)
   * [Create an exercise for a classroom](#create-an-exercise-for-a-classroom)
+  * [Get exercises for a classroom](#get-exercises-for-a-classroom)
+  * [Get an exercise](#get-an-exercise)
+  * [Delete an exercise](#delete-an-exercise)
+  * [Update an exercise](#update-an-exercise)
 5. [Question routes](#question-routes)
   * [Create a question for an exercise](#create-a-question-for-an-exercise)
 6. [Game routes](#game-routes)
@@ -712,5 +716,124 @@ Response Status Code: 422
 
 { 
   "message": "Check your accept parameter."
+}
+```
+
+## Exercise Routes
+
+### Create an exercise for a classroom
+
+Access-Token: *Required.*
+
+Path: `POST 'classrooms/:id/exercise'`
+
+Example data successful response:
+
+```json
+Response Status Code: 201
+
+{
+  "id": 3,
+  "name": "hello2",
+  "description": null,
+  "classroom": {
+    "id": 20,
+    "name": "classroom1",
+    "description": "hello hello"
+  }
+}
+```
+
+Example data failure response:
+
+```json
+Response Status Code: 422
+
+{
+  "errors": [
+    "Name has already been taken"
+  ]
+}
+```
+### Get exercises for a classroom
+
+Access-Token: *Required.*
+
+Path: `GET 'classrooms/:id/exercises'`
+
+Example data successful response:
+
+```json
+Response Status Code: 200
+
+[
+  {
+    "id": 1,
+    "name": null,
+    "description": null
+  },
+  {
+    "id": 2,
+    "name": "hello",
+    "description": null
+  }
+]
+```
+
+### Get an exercise
+
+Access-Token: *Required.*
+
+Path: `GET 'exercises/:id'`
+
+Example data successful response:
+
+```json
+Response Status Code: 200
+
+{
+  "id": 2,
+  "name": "hello23",
+  "description": "yooo",
+  "classroom": {
+    "id": 20,
+    "name": "classroom1",
+    "description": "hello hello"
+  }
+}
+```
+### Delete an exercise
+
+Access-Token: *Required.*
+
+Path: `DELETE 'exercises/:id'`
+
+Example data successful response:
+
+```json
+Response Status Code: 200
+
+{
+  "message": "Exercise destroyed."
+}
+```
+### Update an exercise
+
+Access-Token: *Required.*
+
+Path: `PUT 'exercises/:id'`
+
+```json
+Response Status Code: 200
+
+{
+  "id": 2,
+  "name": "hello23",
+  "description": "yooo",
+  "classroom": {
+    "id": 20,
+    "name": "classroom1",
+    "description": "hello hello"
+  }
 }
 ```
