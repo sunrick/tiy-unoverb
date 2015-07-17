@@ -9,14 +9,16 @@
 require 'csv'
 require 'set'
 
-Language.create(name: "spanish")
+@language = Language.find_or_create_by(name: "spanish")
 
 
 def importer_thing
   csv_file = "db/spanish_database.csv"
 
   @forms = ["yo","tu","el/ella/usted","nosotros","vosotros","ellos_ellas_ustedes"]
-  @language = Language.find_by(name: "spanish")
+  @forms.each do |form|
+    Form.find_or_create_by(form: form, language: @language)
+  end
 
   csv = []
   CSV.foreach(csv_file, headers: true, encoding: "bom|utf-8") do |row|
@@ -52,11 +54,11 @@ def importer_thing
     form_col_count = 7 # loop through form columns
     until form_col_count == 12
       conjugation = {
-        form: @forms[form_count],
         conjugation: row[form_col_count]
       }
+      @form = Form.find_by(form: @forms[form_count])
       conjugation = conjugation.merge(conjugation_hash)
-      combo = conjugation.merge({verb: @verb, tense: @tense})
+      combo = conjugation.merge({verb: @verb, tense: @tense, form: @form})
       Conjugation.find_or_create_by(combo)
 
       form_col_count += 1
