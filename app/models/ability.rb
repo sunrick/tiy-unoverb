@@ -14,7 +14,7 @@ class Ability
     can :manage, Exercise do |exercise|
       exercise.classroom.users.where(roles: {role: :teacher}).include? user
     end
-    can :get_exercises, Exercise do |exercise|
+    can [:get_exercises, :get_exercise, :get_questions, :get_question], Exercise do |exercise|
       exercise.classroom.users.find(user.id)
     end
   end

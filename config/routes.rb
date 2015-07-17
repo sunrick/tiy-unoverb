@@ -33,10 +33,12 @@ Rails.application.routes.draw do
   put 'exercises/:id', to: 'exercises#update'
   get 'exercises/:id', to: 'exercises#get_exercise'
 
-  # EXERCISE_VERB ROUTES
-
+  # QUESTION ROUTES
   post 'exercises/:id/question', to: 'questions#create'
-
+  get 'exercises/:id/questions', to: 'questions#get_questions'
+  get 'questions/:id', to: 'questions#get_question'
+  put 'questions/:id', to: 'questions#update'
+  delete 'questions/:id', to: 'questions#delete'
   
 
   # Example of regular route:
