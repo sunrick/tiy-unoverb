@@ -27,7 +27,11 @@
   * [Delete an exercise](#delete-an-exercise)
   * [Update an exercise](#update-an-exercise)
 5. [Question routes](#question-routes)
-  * [Create a question for an exercise](#create-a-question-for-an-exercise)
+  * [Create questions for an exercise](#create-questions-for-an-exercise)
+  * [Get all questions for an exercise](#get-all-questions-for-an-exercise)
+  * [Get a question for an exercise](#get-a-question-for-an-exercise)
+  * [Update a question for an exercise](#update-a-question-for-an-exercise)
+  * [Delete a question for an exercise](#delete-a-question-for-an-exercise)
 6. [Game routes](#game-routes)
   * [Start a new game](#start-a-new-game)
 
@@ -847,3 +851,115 @@ Response Status Code: 200
   }
 }
 ```
+## Question Routes
+
+### Create questions for an exercise
+
+Access-Token: *Required.*
+
+Path: `POST 'exercises/:id/questions'`
+
+Example data successful response:
+
+```json
+Response Status Code: 201
+
+[
+  {
+    "id": 1,
+    "form": "tu",
+    "verb": "abandonar",
+    "combined_tense_english": "Indicative Present",
+    "conjugation": "abandonas"
+  },
+  {
+    "id": 2,
+    "form": "tu",
+    "verb": "abandonar",
+    "combined_tense_english": "Indicative Present",
+    "conjugation": "abandonas"
+  }
+]
+```
+
+### Get all questions for an exercise
+
+Access-Token: *Required.*
+
+Path: `GET 'exercises/:id/questions'`
+
+```json
+Response Status Code: 200
+
+[
+  {
+    "id": 1,
+    "form": "tu",
+    "verb": "abandonar",
+    "combined_tense_english": "Indicative Present",
+    "conjugation": "abandonas"
+  },
+  {
+    "id": 2,
+    "form": "tu",
+    "verb": "abandonar",
+    "combined_tense_english": "Indicative Present",
+    "conjugation": "abandonas"
+  }
+]
+```
+
+### Get a question for an exercise
+
+Access-Token: *Required.*
+
+Path: `GET 'questions/:id'`
+
+```json
+Response Status Code: 200
+
+{
+  "id": 72,
+  "form": "tu",
+  "verb": "hablar",
+  "combined_tense_english": "Indicative Present",
+  "conjugation": "hablas"
+}
+```
+
+### Update a question for an exercise
+
+Access-Token: *Required.*
+
+Path: `PUT 'questions/:id'`
+
+| name       | type   | description                              | required? |
+|------------|--------|------------------------------------------| ---------- |
+| form   | string | check the form routes for possible strings   | required |
+| verb   | string | check the verb routes for possible strings    | required |
+| combined_tense_english   | string | check the form tense routes for possible strings | required |
+
+```json
+Response Status Code: 200
+
+{
+  "id": 72,
+  "form": "tu",
+  "verb": "hablar",
+  "combined_tense_english": "Indicative Present",
+  "conjugation": "hablas"
+}
+```
+
+### Delete a question for an exercise
+
+Access-Token: *Required.*
+
+Path: `DELETE 'questions/:id'`
+
+```json
+{
+  "message": "Question has been destroyed."
+}
+```
+

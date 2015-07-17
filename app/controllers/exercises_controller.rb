@@ -1,5 +1,5 @@
 class ExercisesController < ApplicationController
-
+  before_action :authenticate_with_token!
   def create
     @classroom = Classroom.find(params[:id])
     @exercise = @classroom.exercises.new( name: params[:name], 
