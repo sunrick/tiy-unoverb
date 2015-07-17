@@ -25,7 +25,7 @@ def importer_thing
 
     verb_hash = {
       verb:             row['infinitive'],
-      verb_english:     row['infinitive_english'],
+      verb_english:     row['infinitive_english']
     }
 
     tense_hash = {
