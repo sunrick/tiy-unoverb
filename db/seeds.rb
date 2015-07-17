@@ -34,7 +34,7 @@ def importer_thing
       mood:                   row['mood'],
       mood_english:           row['mood_english'],
       tense:                  row['tense'],
-      tense_english:          row['tense_english'],
+      tense_english:          row['tense_english']
     }
 
     conjugation_hash = {
