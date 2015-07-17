@@ -34,6 +34,12 @@
   * [Delete a question for an exercise](#delete-a-question-for-an-exercise)
 6. [Game routes](#game-routes)
   * [Start a new game](#start-a-new-game)
+7. [Verb routes](#verb-routes)
+  * [Search verbs](#search-verbs)
+8. [Tense routes](#tense-routes)
+  * [Get all tenses](#get-all-tenses)
+9. [Form routes](#form-routes)
+  * [Get all forms](#get-all-forms)]
 
 ## Overview
 
@@ -859,6 +865,26 @@ Access-Token: *Required.*
 
 Path: `POST 'exercises/:id/questions'`
 
+Parameters:
+
+You will have to post json data in this format for each question you want to create. Use the routes for Verbs, Forms, Tenses to get the available data to post.
+
+```json
+[
+  {
+    form: "tu",
+    verb: "abandonar",
+    combined_tense_english: "Indicative Present"
+  },
+  {
+    form: "yo",
+    verb: "abandonar",
+    combined_tense_english: "Indicative Present"
+  }
+]
+
+```
+
 Example data successful response:
 
 ```json
@@ -933,6 +959,8 @@ Access-Token: *Required.*
 
 Path: `PUT 'questions/:id'`
 
+Parameters:
+
 | name       | type   | description                              | required? |
 |------------|--------|------------------------------------------| ---------- |
 | form   | string | check the form routes for possible strings   | required |
@@ -962,4 +990,35 @@ Path: `DELETE 'questions/:id'`
   "message": "Question has been destroyed."
 }
 ```
+
+## Verb routes
+
+### Search verbs
+
+Access-Token: *Required.*
+
+Path: `GET 'verbs/search'`
+
+Parameters:
+
+| name       | type   | description                              | required? |
+|------------|--------|------------------------------------------| ---------- |
+| language  | string | for now "spanish"   | required |
+| search | string | any valid string | required |
+
+```json
+Response Status Code: 200
+
+{
+  "verbs": [
+    {
+      "verb": "abandonar"
+    },
+    {
+      "verb": "abordar"
+    }
+}
+```
+
+
 
