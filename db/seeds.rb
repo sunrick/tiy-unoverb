@@ -15,7 +15,7 @@ require 'set'
 def importer_thing
   csv_file = "db/spanish_database.csv"
 
-  @forms = ["yo","tu","el/ella/usted","nosotros","vosotros","ellos_ellas_ustedes"]
+  @forms = ["yo","tu","el/ella/usted","nosotros","vosotros","ellos/ellas/ustedes"]
   @forms.each do |form|
     Form.find_or_create_by(form: form, language: @language)
   end

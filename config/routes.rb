@@ -39,6 +39,15 @@ Rails.application.routes.draw do
   get 'questions/:id', to: 'questions#get_question'
   put 'questions/:id', to: 'questions#update'
   delete 'questions/:id', to: 'questions#delete'
+
+  # VERB ROUTES
+  get 'verbs/search', to: 'verbs#search'
+
+  # TENSE ROUTES
+  get 'tenses', to: 'tenses#get_tenses'
+
+  # FORM ROUTES
+  get 'forms', to: 'forms#get_forms'
   
 
   # Example of regular route:

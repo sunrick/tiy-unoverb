@@ -1020,5 +1020,53 @@ Response Status Code: 200
 }
 ```
 
+## Tenses routes
 
+### Get all tenses
+
+Access-Token: *Required.*
+
+Path: `GET 'tenses'`
+
+| name       | type   | description                              | required? |
+|------------|--------|------------------------------------------| ---------- |
+| language  | string | for now "spanish"   | required |
+
+```json
+Response Status Code: 200
+
+[
+  {
+    "combined_tense_english": "Indicative Present"
+  },
+  {
+    "combined_tense_english": "Indicative Future"
+  }
+]
+```
+
+## Forms routes
+
+### Get all forms
+
+Access-Token: *Required.*
+
+Path: `GET 'forms'`
+
+| name       | type   | description                              | required? |
+|------------|--------|------------------------------------------| ---------- |
+| language  | string | for now "spanish"   | required |
+
+```json
+Response Status Code: 200
+
+[
+  {
+    "form": "yo"
+  },
+  {
+    "form": "tu"
+  }
+]
+```
 
