@@ -47,7 +47,7 @@ def importer_thing
 
     verb_hash = verb_hash.merge({ language: @language})
     @verb = Verb.find_or_create_by(verb_hash)
-
+    tense_hash_ tense_hash.merge({ language: @language})
     @tense = Tense.find_or_create_by(tense_hash)
 
     form_count = 0 # loop through different forms
