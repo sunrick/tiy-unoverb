@@ -1,11 +1,39 @@
 class GamesController < ApplicationController
-
+  before_action :authenticate_with_token!
+  
   def save
-
+    @exercise = Exercise.find(params[:id])
+    authorize! :save, @exercise
+    solutions = params[:data]
+    @game = Game.create(user: current_user, exercise: @exercise)
+    @results = []
+    ActiveRecord::Base.transaction do
+      solutions.each do |s|
+        @question = Question.find(s[:question_id])
+        conjugation = @question.conjugation.conjugation
+        # correct = conjugation == s[:guess] ? true : false
+        if s[:guess] == conjugation
+          @solution = Solution.create!( question: @question,
+                                        game: @game,
+                                        time: s[:time],
+                                        guess: s[:guess],
+                                        correct: true
+                                      )
+        elsif s[:guess] != conjugation
+          @solution = Solution.create!( question: @question,
+                                        game: @game,
+                                        time: s[:time],
+                                        guess: s[:guess]
+                                      )
+        end
+      end
+    end
+    render json: { message: "Game has been saved."}, status: :created
   end
 
   def play
     @exercise = Exercise.find(params[:id])
+    authorize! :play, @exercise
     @questions = @exercise.questions.all.shuffle
     @results = []
     @questions.each do |q|
@@ -20,10 +48,7 @@ class GamesController < ApplicationController
                     form: @form, 
                     conjugation: @conjugation }
     end
-    render 'play.json.jbuilder'
-  end
-
-  def get_game
+    render 'play.json.jbuilder', status: :ok
   end
 
 end

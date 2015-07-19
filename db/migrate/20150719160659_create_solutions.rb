@@ -3,7 +3,7 @@ class CreateSolutions < ActiveRecord::Migration
     create_table :solutions do |t|
       t.integer :game_id
       t.string :guess
-      t.boolean :correct
+      t.boolean :correct, null: false, default: false
       t.integer :time
       t.integer :question_id
       t.timestamps null: false
