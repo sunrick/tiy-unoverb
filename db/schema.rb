@@ -61,8 +61,6 @@ ActiveRecord::Schema.define(version: 20150719160659) do
   create_table "games", force: :cascade do |t|
     t.integer  "exercise_id"
     t.integer  "user_id"
-    t.integer  "time"
-    t.integer  "accuracy"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -99,7 +97,7 @@ ActiveRecord::Schema.define(version: 20150719160659) do
 
   create_table "solutions", force: :cascade do |t|
     t.integer  "game_id"
-    t.string   "solution"
+    t.string   "guess"
     t.boolean  "correct"
     t.integer  "time"
     t.integer  "question_id"
