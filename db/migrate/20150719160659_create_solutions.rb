@@ -5,7 +5,7 @@ class CreateSolutions < ActiveRecord::Migration
       t.string :solution
       t.boolean :correct
       t.integer :time
-      t.integer :conjugation_id
+      t.integer :question_id
       t.timestamps null: false
     end
   end

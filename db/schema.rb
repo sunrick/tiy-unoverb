@@ -102,9 +102,9 @@ ActiveRecord::Schema.define(version: 20150719160659) do
     t.string   "solution"
     t.boolean  "correct"
     t.integer  "time"
-    t.integer  "conjugation_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "tenses", force: :cascade do |t|

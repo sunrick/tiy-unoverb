@@ -1,4 +1,4 @@
 class Solution < ActiveRecord::Base
   belongs_to :game
-  belongs_to :conjugation
+  belongs_to :question
 end
