@@ -48,7 +48,16 @@ Rails.application.routes.draw do
 
   # FORM ROUTES
   get 'forms', to: 'forms#get_forms'
-  
+
+  # GAME ROUTES
+  post 'games/save', to: 'games#save'
+  get 'games/play', to: 'games#play'
+  get 'games/:id', to: 'games#get_game'
+
+  # SCORE ROUTES
+  get 'scores/exercise/:id', to: 'scores#exercise'
+  get 'scores/classroom/:id', to: 'scores#classroom'
+  get 'scores/user', to: 'scores#user'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
