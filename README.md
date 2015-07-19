@@ -33,7 +33,7 @@
   * [Update a question for an exercise](#update-a-question-for-an-exercise)
   * [Delete a question for an exercise](#delete-a-question-for-an-exercise)
 6. [Game routes](#game-routes)
-  * [Start a new game](#start-a-new-game)
+  * [Play a new game](#Play-a-new-game)
 7. [Verb routes](#verb-routes)
   * [Search verbs](#search-verbs)
 8. [Tense routes](#tense-routes)
@@ -992,6 +992,41 @@ Path: `DELETE 'questions/:id'`
 {
   "message": "Question has been destroyed."
 }
+```
+
+## Game routes
+
+### Play a new game
+
+Access-Token: *Required.*
+
+Path: `GET 'exercises/:id/games/play'`
+
+Example data successful response:
+
+```json
+Response Status Code: 200
+
+[
+  {
+    "id": 59,
+    "form": "yo",
+    "verb": "hablar",
+    "verb_english": "to speak",
+    "combined_tense_english": "Indicative Present",
+    "example_english": "I speak, am speaking",
+    "answer": "hablo"
+  },
+  {
+    "id": 22,
+    "form": "yo",
+    "verb": "comer",
+    "verb_english": "to eat",
+    "combined_tense_english": "Indicative Present",
+    "example_english": "I eat, am eating",
+    "answer": "como"
+  }
+]
 ```
 
 ## Verb routes
