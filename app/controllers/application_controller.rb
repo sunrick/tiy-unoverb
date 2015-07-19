@@ -24,4 +24,9 @@ class ApplicationController < ActionController::Base
                    exception: "No such record: #{e.message}" },
       status: :not_found
   end
+
+  rescue_from ActiveRecord::RecordInvalid do |e|
+    render json: { exception: "#{e.message}"},
+      status: :unprocessable_entity
+  end
 end

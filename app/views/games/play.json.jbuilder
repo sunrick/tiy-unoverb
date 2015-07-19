@@ -6,7 +6,7 @@ json.array! @results do |result|
   form = result[:form]
   conjugation = result[:conjugation]
 
-  json.id question.id
+  json.question_id question.id
   json.form form.form
   json.verb verb.verb
   json.verb_english verb.verb_english

@@ -33,7 +33,8 @@
   * [Update a question for an exercise](#update-a-question-for-an-exercise)
   * [Delete a question for an exercise](#delete-a-question-for-an-exercise)
 6. [Game routes](#game-routes)
-  * [Start a new game](#start-a-new-game)
+  * [Play a new game](#play-a-new-game)
+  * [Save a game](#save-a-game)
 7. [Verb routes](#verb-routes)
   * [Search verbs](#search-verbs)
 8. [Tense routes](#tense-routes)
@@ -867,7 +868,7 @@ Path: `POST 'exercises/:id/questions'`
 
 Parameters:
 
-You will have to post json data in this format for each question you want to create. Use the routes for Verbs, Forms, Tenses to get the available data to post.
+You will have to post json data in this format for each question you want to create. Use the routes for Verbs, Forms, Tenses to get the available data to post. Make sure you include `Content-Type: application/json` in your headers.
 
 ```json
 {
@@ -885,7 +886,6 @@ You will have to post json data in this format for each question you want to cre
     }
   ]
 }
-
 ```
 
 Example data successful response:
@@ -991,6 +991,81 @@ Path: `DELETE 'questions/:id'`
 ```json
 {
   "message": "Question has been destroyed."
+}
+```
+
+## Game routes
+
+### Play a new game
+
+This route shuffles the exercise into a random order.
+
+Access-Token: *Required.*
+
+Path: `GET 'exercises/:id/games/play'`
+
+Example data successful response:
+
+```json
+Response Status Code: 200
+
+[
+  {
+    "question_id": 59,
+    "form": "yo",
+    "verb": "hablar",
+    "verb_english": "to speak",
+    "combined_tense_english": "Indicative Present",
+    "example_english": "I speak, am speaking",
+    "answer": "hablo"
+  },
+  {
+    "question_id": 22,
+    "form": "yo",
+    "verb": "comer",
+    "verb_english": "to eat",
+    "combined_tense_english": "Indicative Present",
+    "example_english": "I eat, am eating",
+    "answer": "como"
+  }
+]
+```
+
+### Save a game
+
+Access-Token: *Required.*
+
+Path: `GET 'exercises/:id/games/save'`
+
+Parameters:
+
+You will have to post json data in this format for each guess you want to save. Make sure you include `Content-Type: application/json` in your headers. Time is in seconds.
+
+```json
+{
+"data":
+  [
+      {
+          "question_id": 22,
+          "guess": "comos",
+          "time": 12
+      },
+      {
+          "question_id": 22,
+          "guess": "como",
+          "time": 2
+      }
+  ]
+}
+```
+
+Example data success response:
+
+```json
+Response Status Code: 201
+
+{
+  "message": "Game has been saved."
 }
 ```
 

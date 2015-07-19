@@ -50,8 +50,8 @@ Rails.application.routes.draw do
   get 'forms', to: 'forms#get_forms'
 
   # GAME ROUTES
-  post 'exercise/:id/games/save', to: 'games#save'
-  get 'exercise/:id/games/play', to: 'games#play'
+  post 'exercises/:id/games/save', to: 'games#save'
+  get 'exercises/:id/games/play', to: 'games#play'
   get 'games/:id', to: 'games#get_game'
 
   # SCORE ROUTES
