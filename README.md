@@ -1020,6 +1020,7 @@ Response Status Code: 200
     {
       "verb": "abordar"
     }
+  ]
 }
 ```
 
