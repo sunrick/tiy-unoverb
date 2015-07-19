@@ -874,14 +874,14 @@ You will have to post json data in this format for each question you want to cre
   "data" : 
   [
     {
-      form: "tu",
-      verb: "abandonar",
-      combined_tense_english: "Indicative Present"
+      "form": "tu",
+      "verb": "abandonar",
+      "combined_tense_english": "Indicative Present"
     },
     {
-      form: "yo",
-      verb: "abandonar",
-      combined_tense_english: "Indicative Present"
+      "form": "yo",
+      "verb": "abandonar",
+      "combined_tense_english": "Indicative Present"
     }
   ]
 }
