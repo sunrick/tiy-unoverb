@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   delete 'classrooms/:id', to: 'classrooms#delete'
   get 'classrooms', to: 'classrooms#get_classrooms'
   get 'user/classrooms', to: 'classrooms#show_user_classrooms'
+  get 'classrooms/:id/usertype', to: 'classrooms#user_type'
 
   # CLASSROOM REQUEST ROUTES
   post 'classrooms/:id/join', to: 'classrooms#request_join'

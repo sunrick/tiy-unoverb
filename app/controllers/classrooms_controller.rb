@@ -1,5 +1,5 @@
 class ClassroomsController < ApplicationController
-  before_action :authenticate_with_token!, only: [:create, :request_join, :show_user_classrooms]
+  before_action :authenticate_with_token!, only: [:create, :request_join, :show_user_classrooms, :user_type]
 
   def create
     @language = Language.find_by(name: params[:language])
@@ -115,6 +115,18 @@ class ClassroomsController < ApplicationController
       render json: { message: "Request deleted."}
     else
       render json: { message: "Check your accept parameter."}
+    end
+  end
+
+  def user_type
+    @classroom = Classroom.find(params[:id])
+    @users = @classroom.users
+    if @users.where(roles: {role: :teacher}).include? current_user
+      render json: { user_type: "teacher"}
+    elsif @users.users.where(roles: {role: :student}).include? current_user
+      render json: { user_type: "student"}
+    else
+      render json: { user_type: "user"}
     end
   end
 

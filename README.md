@@ -20,6 +20,7 @@
   * [Send join request to classroom](#send-join-request-to-classroom)
   * [Get requests to join classroom](#get-requests-to-join-classroom)
   * [Process a join request](#process-a-join-request)
+  * [User role in a classroom](#user-role-in-a-classroom)
 4. [Exercise routes](#exercise-routes)
   * [Create an exercise for a classroom](#create-an-exercise-for-a-classroom)
   * [Get exercises for a classroom](#get-exercises-for-a-classroom)
@@ -40,7 +41,7 @@
 8. [Tense routes](#tense-routes)
   * [Get all tenses](#get-all-tenses)
 9. [Form routes](#form-routes)
-  * [Get all forms](#get-all-forms)]
+  * [Get all forms](#get-all-forms)
 
 ## Overview
 
@@ -728,6 +729,21 @@ Response Status Code: 422
 { 
   "message": "Check your accept parameter."
 }
+```
+
+### User role in a classroom
+
+Access-Token: *Required.*
+
+Example data success response: 
+
+```json
+  Response Status Code:
+  POSSIBLE USER TYPES: "teacher", "student"
+
+  {
+    "user_type": "teacher"
+  }
 ```
 
 ## Exercise Routes
