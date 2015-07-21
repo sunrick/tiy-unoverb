@@ -1,5 +1,5 @@
 class VerbsController < ApplicationController
-  before_action :authenticate_with_token!
+  # before_action :authenticate_with_token!
 
   def search
     @language = Language.find_by!(name: params[:language])
