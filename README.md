@@ -42,6 +42,8 @@
   * [Get all tenses](#get-all-tenses)
 9. [Form routes](#form-routes)
   * [Get all forms](#get-all-forms)
+10. [Score routes](#score-routes)
+  * [Get scores for a specific exercise](#get-scores-for-a-specific-exercise)
 
 ## Overview
 
@@ -1089,9 +1091,9 @@ Response Status Code: 201
 
 ### Search verbs
 
-Access-Token: *Required.*
+Access-Token: *Not Required.*
 
-Path: `GET 'verbs/search'`
+Path: `GET 'verbs'`
 
 Parameters:
 
@@ -1163,5 +1165,64 @@ Response Status Code: 200
     "form": "tu"
   }
 ]
+```
+
+## Score Routes
+
+### Get scores for a specific exercise
+
+You will get a breakdown of an entire exercise question by question with the 5 most common mistakes students made on that conjugation along with the count.
+
+Access-Token: *Required.*
+
+Path: `GET 'exercises/:id/scores'`
+
+```json
+Response Status Code: 200
+
+[
+  {
+    "question": {
+      "id": 1,
+      "form": "tu",
+      "tense": "Indicative Present",
+      "verb": "abandonar",
+      "conjugation": "abandonas"
+    },
+    "score_data": {
+      "attempts": 20,
+      "correct": 10,
+      "wrong": 10,
+      "accuracy": 50.00
+    },
+    "common_mistakes": [
+      {
+        "mistake": "abondas",
+        "count": 10
+      },
+      {
+        "mistake": "comos",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "question": {
+      "id": 4,
+      "form": "tu",
+      "tense": "Indicative Present",
+      "verb": "comer",
+      "conjugation": "comes"
+    },
+    "score_data": {
+      "attempts": 0,
+      "correct": 0,
+      "wrong": 0,
+      "accuracy": 0
+    },
+    "common_mistakes": []
+  }
+]
+
 ```
 

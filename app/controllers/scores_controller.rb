@@ -1,7 +1,10 @@
 class ScoresController < ApplicationController
+  before_action :authenticate_with_token!
 
   def exercise
-    @questions = Exercise.find(params[:id]).questions
+    @exercise = Exercise.find(params[:id])
+    authorize! :exercise, @exercise
+    @questions = @exercise.questions
     @results = []
     @questions.each do |q|
       conjugation = q.conjugation
@@ -29,6 +32,11 @@ class ScoresController < ApplicationController
       @results << result
     end
     render 'exercise.json.jbuilder'
+  end
+
+  def question
+    @question.find(params[:id])
+
   end
 
   def classroom

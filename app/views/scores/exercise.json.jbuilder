@@ -1,6 +1,6 @@
 json.array! @results do |result|
   json.question do
-    json.question_id result[:question].id
+    json.id result[:question].id
     json.form result[:form].form
     json.tense result[:tense].combined_tense_english
     json.verb result[:verb].verb

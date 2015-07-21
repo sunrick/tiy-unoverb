@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   get 'exercises/:id', to: 'exercises#get_exercise'
 
   # QUESTION ROUTES
-  post 'exercises/:id/question', to: 'questions#create'
+  post 'exercises/:id/questions', to: 'questions#create'
   get 'exercises/:id/questions', to: 'questions#get_questions'
   get 'questions/:id', to: 'questions#get_question'
   put 'questions/:id', to: 'questions#update'
