@@ -735,7 +735,7 @@ Response Status Code: 422
 
 Access-Token: *Required.*
 
-Example data success response: 
+Example data success response: 200
 
 ```json
   Response Status Code:

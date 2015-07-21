@@ -122,11 +122,11 @@ class ClassroomsController < ApplicationController
     @classroom = Classroom.find(params[:id])
     @users = @classroom.users
     if @users.where(roles: {role: :teacher}).include? current_user
-      render json: { user_type: "teacher"}
+      render json: { user_type: "teacher"}, status: :ok
     elsif @users.users.where(roles: {role: :student}).include? current_user
-      render json: { user_type: "student"}
+      render json: { user_type: "student"}, status: :ok
     else
-      render json: { user_type: "user"}
+      render json: { user_type: "user"}, status: :ok
     end
   end
 
