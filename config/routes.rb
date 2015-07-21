@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   delete 'questions/:id', to: 'questions#delete'
 
   # VERB ROUTES
-  get 'verbs/search', to: 'verbs#search'
+  get 'verbs', to: 'verbs#search'
 
   # TENSE ROUTES
   get 'tenses', to: 'tenses#get_tenses'
@@ -56,9 +56,9 @@ Rails.application.routes.draw do
   get 'games/:id', to: 'games#get_game'
 
   # SCORE ROUTES
-  get 'scores/exercise/:id', to: 'scores#exercise'
-  get 'scores/classroom/:id', to: 'scores#classroom'
-  get 'scores/user', to: 'scores#user'
+  get 'exercises/:id/scores', to: 'scores#exercise'
+  get 'classrooms/:id/scores', to: 'scores#classroom'
+  get 'user/scores', to: 'scores#user'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
