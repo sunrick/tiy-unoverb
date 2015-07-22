@@ -10,6 +10,7 @@ class GamesController < ApplicationController
     ActiveRecord::Base.transaction do
       solutions.each do |s|
         @question = Question.find(s[:question_id])
+
         conjugation = @question.conjugation.conjugation
         # correct = conjugation == s[:guess] ? true : false
         if s[:guess] == conjugation
@@ -28,7 +29,7 @@ class GamesController < ApplicationController
         end
       end
     end
-    render json: { message: "Game has been saved."}, status: :created
+    render json: { game_id: @game.id}, status: :created
   end
 
   def play
