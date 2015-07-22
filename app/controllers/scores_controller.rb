@@ -35,8 +35,52 @@ class ScoresController < ApplicationController
   end
 
   def question
-    @question.find(params[:id])
-
+    @question = Question.find(params[:id])
+    @exercise = @question.exercise
+    authorize! :question, @exercise
+    conjugation = @question.conjugation
+    verb = conjugation.verb
+    tense = conjugation.tense
+    form = conjugation.form
+    attempts = @question.solutions.count
+    correct = @question.solutions.where(correct: true).count
+    wrong = attempts - correct
+    common_mistakes = Solution.where(question: @question, correct: false)
+                              .group(:guess).limit(5).count
+                              .to_a
+    @users = User.joins(:solutions)
+                 .where(solutions: {question_id: @question.id})
+                 .group(:id)
+    @user_scores = []
+    @users.each do |user|
+      solutions = Solution.joins(:user).where(users: {id: user.id})
+      attempts = solutions.count
+      correct = solutions.where(correct: true).count
+      common_mistakes = solutions.where(correct: false).group(:guess).limit(5).count.to_a
+      result = {
+        user: user,
+        attempts: attempts,
+        correct: correct,
+        wrong: attempts - correct,
+        accuracy: (correct.to_f / attempts.to_f) * 100,
+        common_mistakes: common_mistakes
+      }
+      @user_scores << result
+    end
+    @result = {
+      question: @question,
+      conjugation: conjugation,
+      verb: verb,
+      tense: tense,
+      form: form,
+      attempts: attempts,
+      correct: correct,
+      wrong: wrong,
+      accuracy: (correct.to_f / attempts.to_f) * 100,
+      common_mistakes: common_mistakes,
+      user_scores: @user_scores
+    }
+    render "question.json.jbuilder"
   end
 
   def classroom
@@ -46,7 +90,6 @@ class ScoresController < ApplicationController
   end
 
   def user
-
   end
 
   def game

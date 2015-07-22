@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :classrooms, through: :roles
   has_many :requests
   has_many :games
+  has_many :solutions, through: :games
 
   def ensure_access_token
     if self.access_token.blank?

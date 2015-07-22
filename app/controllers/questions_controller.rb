@@ -3,25 +3,29 @@ class QuestionsController < ApplicationController
 
   def create
     questions = params[:data]
-    @exercise = Exercise.find(params[:id])
-    authorize! :create, @exercise
-    @language = @exercise.classroom.language
-    @results = []
-    ActiveRecord::Base.transaction do
-      questions.each do |q|
-        @verb = @language.verbs.find_by!(verb: q[:verb])
-        @tense = @language.tenses.find_by!(combined_tense_english: q[:combined_tense_english])
-        @form = @language.forms.find_by!(form: q[:form])
-        @conjugation = Conjugation.find_by!(verb: @verb, tense: @tense, form: @form)
-        @question = Question.find_or_create_by(exercise: @exercise, conjugation: @conjugation)
-        @results << { question: @question, 
-                      verb: @verb, 
-                      tense: @tense, 
-                      form: @form, 
-                      conjugation: @conjugation }
+    if !params[:data].nil?
+      @exercise = Exercise.find(params[:id])
+      authorize! :create, @exercise
+      @language = @exercise.classroom.language
+      @results = []
+      ActiveRecord::Base.transaction do
+        questions.each do |q|
+          @verb = @language.verbs.find_by!(verb: q[:verb])
+          @tense = @language.tenses.find_by!(combined_tense_english: q[:combined_tense_english])
+          @form = @language.forms.find_by!(form: q[:form])
+          @conjugation = Conjugation.find_by!(verb: @verb, tense: @tense, form: @form)
+          @question = Question.find_or_create_by(exercise: @exercise, conjugation: @conjugation)
+          @results << { question: @question, 
+                        verb: @verb, 
+                        tense: @tense, 
+                        form: @form, 
+                        conjugation: @conjugation }
+        end
       end
+      render 'questions.json.jbuilder', status: :created
+    else
+      render json: { message: "Data param is empty." }
     end
-    render 'questions.json.jbuilder', status: :created
   end
 
   def get_questions
