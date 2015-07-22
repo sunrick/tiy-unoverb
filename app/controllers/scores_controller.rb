@@ -17,6 +17,9 @@ class ScoresController < ApplicationController
       common_mistakes = Solution.where(question: q, correct: false)
                                 .group(:guess).limit(5).count
                                 .to_a
+      top_time = q.solutions.minimum(:time)
+      slowest_time = q.solutions.maximum(:time)
+      avg_time = q.solutions.sum(:time).to_f / attempts.to_f
       result = {
         question: q,
         conjugation: conjugation,
@@ -27,6 +30,9 @@ class ScoresController < ApplicationController
         correct: correct,
         wrong: wrong,
         accuracy: (correct.to_f / attempts.to_f) * 100,
+        top_time: top_time,
+        slowest_time: slowest_time,
+        avg_time: avg_time,
         common_mistakes: common_mistakes
       }
       @results << result
@@ -45,6 +51,9 @@ class ScoresController < ApplicationController
     attempts = @question.solutions.count
     correct = @question.solutions.where(correct: true).count
     wrong = attempts - correct
+    top_time = @question.solutions.minimum(:time)
+    slowest_time = @question.solutions.maximum(:time)
+    avg_time = @question.solutions.sum(:time).to_f / attempts.to_f
     common_mistakes = Solution.where(question: @question, correct: false)
                               .group(:guess).limit(5).count
                               .to_a
@@ -57,12 +66,18 @@ class ScoresController < ApplicationController
       attempts = solutions.count
       correct = solutions.where(correct: true).count
       common_mistakes = solutions.where(correct: false).group(:guess).limit(5).count.to_a
+      top_time = solutions.minimum(:time)
+      slowest_time = solutions.maximum(:time)
+      avg_time = solutions.sum(:time).to_f / attempts.to_f
       result = {
         user: user,
         attempts: attempts,
         correct: correct,
         wrong: attempts - correct,
         accuracy: (correct.to_f / attempts.to_f) * 100,
+        top_time: top_time,
+        slowest_time: slowest_time,
+        avg_time: avg_time,
         common_mistakes: common_mistakes
       }
       @user_scores << result
@@ -77,6 +92,9 @@ class ScoresController < ApplicationController
       correct: correct,
       wrong: wrong,
       accuracy: (correct.to_f / attempts.to_f) * 100,
+      top_time: top_time,
+      slowest_time: slowest_time,
+      avg_time: avg_time,
       common_mistakes: common_mistakes,
       user_scores: @user_scores
     }
@@ -93,7 +111,6 @@ class ScoresController < ApplicationController
   end
 
   def game
-  
   end
 
 end

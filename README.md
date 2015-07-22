@@ -44,6 +44,7 @@
   * [Get all forms](#get-all-forms)
 10. [Score routes](#score-routes)
   * [Get scores for a specific exercise](#get-scores-for-a-specific-exercise)
+  * [Get scores for a specific question](#get-scores-for-a-specific-question)
 
 ## Overview
 
@@ -1193,7 +1194,10 @@ Response Status Code: 200
       "attempts": 20,
       "correct": 10,
       "wrong": 10,
-      "accuracy": 50.00
+      "accuracy": 50.00,
+      "top_time": 2,
+      "slowest_time": 12,
+      "avg_time": 11.42
     },
     "common_mistakes": [
       {
@@ -1218,11 +1222,66 @@ Response Status Code: 200
       "attempts": 0,
       "correct": 0,
       "wrong": 0,
-      "accuracy": 0
+      "accuracy": 0,
+      "top_time": null,
+      "slowest_time": null,
+      "avg_time": null
     },
     "common_mistakes": []
   }
 ]
+```
+### Get scores for a sepcific question
 
+Access-Token: *Required.*
+
+Path: `GET 'questions/:id/scores'`
+
+
+```json
+Response Status Code: 200
+
+{
+  "question": {
+    "id": 22,
+    "form": "yo",
+    "tense": "Indicative Present",
+    "verb": "comer",
+    "conjugation": "como"
+  },
+  "score_data": {
+    "attempts": 7,
+    "correct": 4,
+    "wrong": 3,
+    "accuracy": 57.14285714285714,
+    "top_time": 2,
+    "slowest_time": 12,
+    "avg_time": 9.142857142857142
+  },
+  "user_scores": [
+    {
+      "user": {
+        "id": 49,
+        "username": "user1",
+        "first_name": "hello hello",
+        "last_name": "spanish",
+        "avatar": "https://s3-us-west-2.amazonaws.com/unoverb-prod/default/missing.png"
+      },
+      "attempts": 7,
+      "correct": 4,
+      "wrong": 3,
+      "accuracy": 57.14285714285714,
+      "top_time": 2,
+      "slowest_time": 12,
+      "avg_time": 9.142857142857142,
+      "common_mistakes": [
+        {
+          "mistake": "comos",
+          "count": 3
+        }
+      ]
+    }
+  ]
+}
 ```
 
