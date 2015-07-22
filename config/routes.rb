@@ -58,6 +58,7 @@ Rails.application.routes.draw do
   # SCORE ROUTES
   get 'exercises/:id/scores', to: 'scores#exercise'
   get 'questions/:id/scores', to: 'scores#question'
+  get 'games/:id/scores', to: 'scores#game'
   get 'classrooms/:id/scores', to: 'scores#classroom'
   get 'user/scores', to: 'scores#user'
 

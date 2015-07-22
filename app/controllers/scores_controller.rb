@@ -108,9 +108,47 @@ class ScoresController < ApplicationController
   end
 
   def user
+    @user = User.find(params[:id])
+    @games = Game.joins(:user, :exercise).where(exercises: { id: id})
   end
 
   def game
+    @game = Game.find(params[:id])
+    @solutions = @game.solutions
+    @solution_scores= []
+    @solutions.each do |solution|
+      conjugation = solution.conjugation
+      result = {
+        question: solution.question,
+        conjugation: conjugation,
+        verb: conjugation.verb,
+        tense: conjugation.tense,
+        form: conjugation.form,
+        correct: solution.correct,
+        time: solution.time
+      }
+      @solution_scores << result
+    end
+    attempts = @solutions.count
+    correct =  @solutions.where(correct: true).count
+    wrong = attempts - correct
+    accuracy = (correct.to_f / attempts.to_f) * 100
+    top_time = @solutions.minimum(:time)
+    slowest_time = @solutions.maximum(:time)
+    avg_time = @solutions.sum(:time).to_f / attempts.to_f
+    @result = {
+      game: @game,
+      user: @game.user,
+      attempts: attempts,
+      correct: correct,
+      wrong: wrong,
+      accuracy: accuracy,
+      top_time: top_time,
+      slowest_time: slowest_time,
+      avg_time: avg_time,
+      solution_scores: @solution_scores
+    }
+    render "game.json.jbuilder"
   end
 
 end
