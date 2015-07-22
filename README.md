@@ -45,6 +45,7 @@
 10. [Score routes](#score-routes)
   * [Get scores for a specific exercise](#get-scores-for-a-specific-exercise)
   * [Get scores for a specific question](#get-scores-for-a-specific-question)
+  * [Get scores for a specific game](#get-scores-for-a-specific-game)
 
 ## Overview
 
@@ -1084,7 +1085,7 @@ Example data success response:
 Response Status Code: 201
 
 {
-  "message": "Game has been saved."
+  "game_id": 46
 }
 ```
 
@@ -1235,8 +1236,7 @@ Response Status Code: 200
 
 Access-Token: *Required.*
 
-Path: `GET 'questions/:id/scores'`
-
+Path: `GET 'games/:id/scores'`
 
 ```json
 Response Status Code: 200
@@ -1280,6 +1280,53 @@ Response Status Code: 200
           "count": 3
         }
       ]
+    }
+  ]
+}
+```
+
+### Get scores for a specific game
+
+```json
+Response Status Code: 200
+
+{
+  "game": {
+    "id": 34,
+    "user": {
+      "username": "user1",
+      "first_name": "hello hello",
+      "last_name": "spanish",
+      "avatar": "https://s3-us-west-2.amazonaws.com/unoverb-prod/default/missing.png"
+    },
+    "score": {
+      "attempts": 2,
+      "correct": 1,
+      "wrong": 1,
+      "accuracy": 50,
+      "top_time": 2,
+      "slowest_time": 12,
+      "avg_time": 7
+    }
+  },
+  "questions": [
+    {
+      "question_id": 22,
+      "conjugation": "como",
+      "verb": "comer",
+      "form": "yo",
+      "tense": "Indicative Present",
+      "correct": false,
+      "time": 12
+    },
+    {
+      "question_id": 22,
+      "conjugation": "como",
+      "verb": "comer",
+      "form": "yo",
+      "tense": "Indicative Present",
+      "correct": true,
+      "time": 2
     }
   ]
 }
