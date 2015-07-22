@@ -1053,7 +1053,7 @@ Response Status Code: 200
 
 Access-Token: *Required.*
 
-Path: `GET 'exercises/:id/games/save'`
+Path: `POST 'exercises/:id/games/save'`
 
 Parameters:
 
