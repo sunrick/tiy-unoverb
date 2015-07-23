@@ -1232,7 +1232,7 @@ Response Status Code: 200
   }
 ]
 ```
-### Get scores for a sepcific question
+### Get scores for a specific question
 
 Access-Token: *Required.*
 
