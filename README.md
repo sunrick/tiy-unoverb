@@ -1236,7 +1236,7 @@ Response Status Code: 200
 
 Access-Token: *Required.*
 
-Path: `GET 'games/:id/scores'`
+Path: `GET 'questions/:id/scores'`
 
 ```json
 Response Status Code: 200
@@ -1286,6 +1286,11 @@ Response Status Code: 200
 ```
 
 ### Get scores for a specific game
+
+Access-Token: *Required.*
+
+Path: `GET 'games/:id/scores'`
+
 
 ```json
 Response Status Code: 200
