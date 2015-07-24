@@ -101,49 +101,49 @@ class ScoresController < ApplicationController
     render "question.json.jbuilder"
   end
 
-  def classroom
-    @classroom = Classroom.find(params[:id])
-    @exercises = @classroom.exercises.all
-    Solution.joins(:game)
-  end
+  # def classroom
+  #   @classroom = Classroom.find(params[:id])
+  #   @exercises = @classroom.exercises.all
+  #   Solution.joins(:game)
+  # end
 
-  def users
-    @exercise = Exercise.find(params[:id])
-    @users = @exercise.users.group(:id)
-    @results = []
-    @users.each do |user|
-      @games = user.games.where(exercise_id: @exercise.id)
-      attempts = @games.solutions.count
-      correct = @games.solutions.where(correct: true}).count
-      wrong = attempts - wrong
-      accuracy = (correct.to_f / attempts.to_f) * 100
-      top_time = @games.solutions.minimum(:time)
-      slowest_time = @games.solutions.maximum(:time)
-      avg_time = @games.solutions.sum(:time).to_f / attempts.to_f
+  # def users
+  #   @exercise = Exercise.find(params[:id])
+  #   @users = @exercise.users.group(:id)
+  #   @results = []
+  #   @users.each do |user|
+  #     @games = user.games.where(exercise_id: @exercise.id)
+  #     attempts = @games.solutions.count
+  #     correct = @games.solutions.where(correct: true}).count
+  #     wrong = attempts - wrong
+  #     accuracy = (correct.to_f / attempts.to_f) * 100
+  #     top_time = @games.solutions.minimum(:time)
+  #     slowest_time = @games.solutions.maximum(:time)
+  #     avg_time = @games.solutions.sum(:time).to_f / attempts.to_f
 
-      result = {
-        user: user,
-        games_count: @games.count,
-        attempts: attempts,
-        correct: correct,
-        wrong: wrong,
-        accuracy: accuracy,
-        top_time: top_time,
-        slowest_time: slowest_time,
+  #     result = {
+  #       user: user,
+  #       games_count: @games.count,
+  #       attempts: attempts,
+  #       correct: correct,
+  #       wrong: wrong,
+  #       accuracy: accuracy,
+  #       top_time: top_time,
+  #       slowest_time: slowest_time,
 
 
-        games:
-      }
-      @results << result
-    end
-    @results
-    render json: @results
-  end
+  #       games:
+  #     }
+  #     @results << result
+  #   end
+  #   @results
+  #   render json: @results
+  # end
 
-  def user
-    @user = User.find(params[:id])
-    @games = Game.joins(:user, :exercise).where(exercises: { id: id})
-  end
+  # def user
+  #   @user = User.find(params[:id])
+  #   @games = Game.joins(:user, :exercise).where(exercises: { id: id})
+  # end
 
   def game
     @game = Game.find(params[:id])
