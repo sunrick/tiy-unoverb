@@ -62,13 +62,13 @@ class ScoresController < ApplicationController
                  .group(:id)
     @user_scores = []
     @users.each do |user|
-      solutions = Solution.joins(:user).where(users: {id: user.id})
-      attempts = solutions.count
-      correct = solutions.where(correct: true).count
-      common_mistakes = solutions.where(correct: false).group(:guess).limit(5).count.to_a
-      top_time = solutions.minimum(:time)
-      slowest_time = solutions.maximum(:time)
-      avg_time = solutions.sum(:time).to_f / attempts.to_f
+      solutions = @question.solutions.joins(:user).where(users: {id: user.id})
+      attempts = @question.solutions.count
+      correct = @question.solutions.where(correct: true).count
+      common_mistakes = @question.solutions.where(correct: false).group(:guess).limit(5).count.to_a
+      top_time = @question.solutions.minimum(:time)
+      slowest_time = @question.solutions.maximum(:time)
+      avg_time = @question.solutions.sum(:time).to_f / attempts.to_f
       result = {
         user: user,
         attempts: attempts,
