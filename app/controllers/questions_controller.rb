@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
           @tense = @language.tenses.find_by!(combined_tense_english: q[:combined_tense_english])
           @form = @language.forms.find_by!(form: q[:form])
           @conjugation = Conjugation.find_by!(verb: @verb, tense: @tense, form: @form)
-          @question = Question.find_or_create_by(exercise: @exercise, conjugation: @conjugation)
+          @question = Question.find(exercise: @exercise, conjugation: @conjugation)
           @results << { question: @question, 
                         verb: @verb, 
                         tense: @tense, 
