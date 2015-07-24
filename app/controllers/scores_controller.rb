@@ -65,7 +65,7 @@ class ScoresController < ApplicationController
       solutions = @question.solutions.joins(:user).where(users: {id: user.id})
       attempts = @question.solutions.count
       correct = @question.solutions.where(correct: true).count
-      common_mistakes = @question.solutions.where(correct: false, user_id: @user.id).group(:guess).limit(5).count.to_a
+      common_mistakes = @question.solutions.where(correct: false, user_id: user.id).group(:guess).limit(5).count.to_a
       top_time = @question.solutions.minimum(:time)
       slowest_time = @question.solutions.maximum(:time)
       avg_time = @question.solutions.sum(:time).to_f / attempts.to_f
