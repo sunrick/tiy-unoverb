@@ -50,10 +50,10 @@ class ScoresController < ApplicationController
     form = conjugation.form
     @attempts = @question.solutions.count
     @correct = @question.solutions.where(correct: true).count
-    @wrong = attempts - correct
+    @wrong = @attempts - @correct
     @top_time = @question.solutions.minimum(:time)
     @slowest_time = @question.solutions.maximum(:time)
-    @avg_time = @question.solutions.sum(:time).to_f / attempts.to_f
+    @avg_time = @question.solutions.sum(:time).to_f / @attempts.to_f
     @common_mistakes = Solution.where(question: @question, correct: false)
                               .group(:guess).limit(5).count
                               .to_a
